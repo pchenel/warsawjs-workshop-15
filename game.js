@@ -19,9 +19,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         fields.forEach(field => {
             field.addEventListener('click', fieldClickHandler);
-
+        });
+        fields.forEach(field => {
+            field.classList.remove('red', 'blue');
     })
-        ;
     }
 
     function fieldClickHandler() {
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
         emptyFields -= 1;
 
         checkWinner();
+
 
 
     }
@@ -54,11 +56,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (winning.includes('redredred')) {
             alert('Game over. PlayerA win.');
+            initGame()
+
         } else if
         (winning.includes ('blueblueblue')) {
             alert('Game over. PlayerB win.');
+            initGame()
         } else if (emptyFields === 0) {
-                alert('Game over. No one win.');
+            alert('Game over. No one win.');
+            initGame()
             }
         }
 
