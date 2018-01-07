@@ -1,12 +1,25 @@
-body {
-    margin-top: 300px;
+header {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+    font-size: 30px;
+    color: darkred;
 }
+
+#title {
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
 
 * {
     box-sizing: border-box;
 }
 
 .board {
+    padding-top: 50px;
     height: 300px;
     width: 300px;
     margin: 0 auto;
@@ -26,4 +39,7 @@ body {
 
 .blue {
     background-color: cornflowerblue;
+}
+button {
+    margin: 10px; 5px;
 }

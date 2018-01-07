@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 //zadeklarowanie obiektow (jest dwoch graczy i kazdy mam swoj kolor
+    var playerA = 'Player A';
+    var playerB = 'Player B';
     var fields = document.querySelectorAll('.board > div');
     var playerClasses = {
         'playerA': 'red',
@@ -8,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var array
     var currentPlayer;
     var emptyFields;
-
+    var titleInfo = document.querySelector('#title');
     initGame();
 
     function initGame() {
@@ -16,7 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
 //zaczynamy od graczaA
         currentPlayer = 'playerA';
         emptyFields = 9;
-
+        titleInfo.classList = playerClasses[currentPlayer];
+        titleInfo.textContent = 'Now round for ' + currentPlayer;
         fields.forEach(field => {
             field.addEventListener('click', fieldClickHandler);
         });
@@ -32,12 +35,16 @@ document.addEventListener('DOMContentLoaded', function () {
         var playerClass = playerClasses[currentPlayer];
         //dodajemy klase by kolor nam sie zmienil
         this.classList.add(playerClass);
+
         //tu mamy w skrocie instrukcje if switch
         currentPlayer = currentPlayer === 'playerA' ? 'playerB' : 'playerA';
         this.removeEventListener('click', fieldClickHandler);
         emptyFields -= 1;
 
+
         checkWinner();
+        titleInfo.classList = playerClasses[currentPlayer];
+        titleInfo.textContent = 'Now round for ' + currentPlayer;
 
 
 
