@@ -14,6 +14,22 @@ document.addEventListener('DOMContentLoaded', function () {
     var emptyFields;
     var titleInfo = document.querySelector('#title');
     initGame();
+    ButtonReset ();
+
+
+
+
+    function ButtonReset () {
+        var btnReset = document.querySelector('.btnReset');
+        btnReset.addEventListener("click", Reset);
+    }
+
+    function Reset () {
+        playerAScores = 0;
+        
+        playerBScores = 0;
+        playersScore();
+    }
 
     function initGame() {
 
@@ -28,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         fields.forEach(field => {
             field.classList.remove('red', 'blue');
+
 
     });
     }
@@ -87,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
             setTimeout(function(){ alert('Game over. No one win.');
 
             initGame()}, 100);
-            
+
             }
 
         }
