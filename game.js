@@ -1,13 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
-//zadeklarowanie obiektow (jest dwoch graczy i kazdy mam swoj kolor
+
     var playerA = 'Player A';
     var playerB = 'Player B';
+    var playerAScores = 0;
+    var playerBScores = 0;
     var fields = document.querySelectorAll('.board > div');
     var playerClasses = {
         'playerA': 'red',
         'playerB': 'blue'
     };
-    var array
+
     var currentPlayer;
     var emptyFields;
     var titleInfo = document.querySelector('#title');
@@ -15,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function initGame() {
 
-//zaczynamy od graczaA
+
         currentPlayer = 'playerA';
         emptyFields = 9;
         titleInfo.classList = playerClasses[currentPlayer];
@@ -31,12 +33,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function fieldClickHandler() {
-        //deklarujemy zmienna i ustalamy jej wartosc poczatkowoa
+
         var playerClass = playerClasses[currentPlayer];
-        //dodajemy klase by kolor nam sie zmienil
+
         this.classList.add(playerClass);
 
-        //tu mamy w skrocie instrukcje if switch
+
         currentPlayer = currentPlayer === 'playerA' ? 'playerB' : 'playerA';
         this.removeEventListener('click', fieldClickHandler);
         emptyFields -= 1;
@@ -65,38 +67,42 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (winning.includes('redredred')) {
             setTimeout(function(){ alert('Game over. PlayerA win.');
+
+
                 initGame()}, 100);
+            playerAScores += 1;
+            playersScore();
 
 
         } else if
         (winning.includes ('blueblueblue')) {
             setTimeout(function(){
                 alert('Game over. PlayerB win.');
+
+
                 initGame()}, 100);
+            playerBScores += 1;
+            playersScore();
         } else if (emptyFields === 0) {
             setTimeout(function(){ alert('Game over. No one win.');
+
             initGame()}, 100);
+            
             }
+
         }
 
 
-});
 
-//instrukcja if switch - czyli jesli mam jednego gracza to zamieniam na drugiego a jesli mam drugiego to zmieniam na pierwszego)
-// if (currentPlayer === PlayerA) {
-//      currentPlayer = PlayerB;
-//}
-// if (currentPlayer === PlayerB) {
-//      currentPlayer = PlayerA;
-//}
-//lub
-// if (currentPlayer === PlayerB) {
-//      currentPlayer = PlayerA;
-//} else (currentPlayer = PlayerB);
-//lub
-//currentPlayer === 'playerA' ? currentPlayer = 'playerB' : currentPlayer = 'playerA'
-//lub
-//currentPlayer = currentPlayer === 'playerA' ? 'playerB' : 'playerA';
+
+    function playersScore () {
+        var playerAElement = document.querySelector('#scores > .playerA');
+        playerAElement.textContent = 'Player A score: ' + playerAScores;
+        var playerBElement = document.querySelector('#scores > .playerB');
+        playerBElement.textContent = 'Player B score: ' + playerBScores;
+    }
+
+});
 
 
 
