@@ -1,5 +1,6 @@
 body {
     font-weight: bold;
+    background-color: antiquewhite;
 }
 header {
     margin-top: 40px;
@@ -57,4 +58,5 @@ button {
     margin: 10px; 5px;
     background-color: lightblue;
     font-size: 20px;
+    padding: 10px 15px;
 }
