@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    var playerA = 'Player A';
-    var playerB = 'Player B';
+
     var playerAScores = 0;
     var playerBScores = 0;
     var fields = document.querySelectorAll('.board > div');
@@ -9,12 +8,49 @@ document.addEventListener('DOMContentLoaded', function () {
         'playerA': 'red',
         'playerB': 'blue'
     };
+    var playerName = {
+        playerA: 'Player A',
+        playerB: 'Player B'
+    };
 
     var currentPlayer;
     var emptyFields;
     var titleInfo = document.querySelector('#title');
+    var btnRenameA = document.querySelector('.btnRenameA');
+    var btnRenameB = document.querySelector('.btnRenameB');
     initGame();
-    ButtonReset ();
+    ButtonReset();
+    ButtonRename();
+
+    function ButtonRename () {
+
+        btnRenameA.addEventListener('click', RenamePlayerA);
+        var btnRenameB = document.querySelector('.btnRenameB');
+        btnRenameB.addEventListener('click', RenamePlayerB);
+
+    }
+
+    function RenamePlayerA () {
+        var newNameA = prompt('Please, enter new name', 'New name A');
+        playerName.playerA = newNameA;
+        titleInfo.textContent = 'Now round for ' + playerName[currentPlayer];
+        btnRenameA.textContent = 'Rename ' + playerName.playerA;
+        playersScore();
+        ButtonRename();
+
+
+    }
+    function RenamePlayerB () {
+        var newNameB = prompt('Please, enter new name', 'New name B');
+        playerName.playerB = newNameB;
+        titleInfo.textContent = 'Now round for ' + playerName[currentPlayer];
+        btnRenameB.textContent = 'Rename ' + playerName.playerB;
+        playersScore();
+        ButtonRename();
+    }
+
+
+
 
 
 
@@ -26,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function Reset () {
         playerAScores = 0;
-        
+
         playerBScores = 0;
         playersScore();
     }
@@ -37,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
         currentPlayer = 'playerA';
         emptyFields = 9;
         titleInfo.classList = playerClasses[currentPlayer];
-        titleInfo.textContent = 'Now round for ' + currentPlayer;
+        titleInfo.textContent = 'Now round for ' + playerName[currentPlayer];
         fields.forEach(field => {
             field.addEventListener('click', fieldClickHandler);
         });
@@ -63,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         checkWinner();
         titleInfo.classList = playerClasses[currentPlayer];
-        titleInfo.textContent = 'Now round for ' + currentPlayer;
+        titleInfo.textContent = 'Now round for ' + playerName[currentPlayer];
 
 
 
@@ -83,7 +119,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         if (winning.includes('redredred')) {
-            setTimeout(function(){ alert('Game over. PlayerA win.');
+            setTimeout(function(){
+                alert('Game over. ' + playerName.playerA + ' win.');
 
 
                 initGame()}, 100);
@@ -94,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if
         (winning.includes ('blueblueblue')) {
             setTimeout(function(){
-                alert('Game over. PlayerB win.');
+                alert('Game over. ' + playerName.playerB + ' win.');
 
 
                 initGame()}, 100);
@@ -114,9 +151,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function playersScore () {
         var playerAElement = document.querySelector('#scores > .playerA');
-        playerAElement.textContent = 'Player A score: ' + playerAScores;
+        playerAElement.textContent = playerName.playerA + ' score: ' + playerAScores;
         var playerBElement = document.querySelector('#scores > .playerB');
-        playerBElement.textContent = 'Player B score: ' + playerBScores;
+        playerBElement.textContent = playerName.playerB + ' score: ' + playerBScores;
     }
 
 });
