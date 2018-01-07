@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
        this.classList.add(playerClass);
        //tu mamy w skrocie instrukcje if switch
        currentPlayer = currentPlayer === 'playerA' ? 'playerB' : 'playerA';
+       this.removeEventListener('click', fieldClickHandler);
+
    }
 });
 
